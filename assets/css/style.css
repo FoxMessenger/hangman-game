@@ -1,0 +1,45 @@
+
+.titleName {
+	text-align: center;
+	color: tomato;
+	width: 600px;
+	margin: auto;
+
+}
+
+#scoreboard {
+	text-align: center;
+}
+
+.letterButton {
+	margin: auto;
+	padding: 20px;
+	float: left;
+}
+
+.letterStatic,
+.letterInactive {
+	list-style: none;
+	float: left;
+}
+
+.letterInactive {
+
+}
+
+/* start of desktop styles */
+
+@media screen and (max-width: 991px) {
+     /* start of large tablet styles */
+	body { width: 900px;}
+}
+
+@media screen and (max-width: 767px) {
+     /* start of medium tablet styles */
+	 
+}
+
+@media screen and (max-width: 479px) {
+     /* start of phone styles */
+
+}

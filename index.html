@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>hangman</title>
+
+	<!-- linking Bootstrap -->
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- linking my css -->
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+	<!-- linking Javascript -->
+	<script type="text/javascript" src="assets/javascript/game.js"></script>
+</head>
+
+<body>
+	<div class="navbar navbar-default titleName">HANGMAN</div>
+		<!-- scoreboard -->
+	<div id="scoreboard"></div>
+
+		<!-- this is the "wrapper" for the entire section of the game -->
+	<div class="wrapper">
+
+		<!-- this will be the wrapper for the actual letter buttons -->
+		<div class="letterButton">
+			<ul class="alphabet">
+				<!-- these classes will change when activated -->
+				<li class="letterStatic">a</li>
+				<li class="letterStatic">b</li>
+				<li class="letterStatic">c</li>
+				<li class="letterStatic">d</li>
+				<li class="letterStatic">e</li>
+				<li class="letterStatic">f</li>
+				<li class="letterStatic">g</li>
+				<li class="letterStatic">h</li>
+			</ul>
+		
+		</div>
+	</div>
+</body>
+</html>

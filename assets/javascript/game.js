@@ -1,18 +1,45 @@
  
-	
 	// NOTES:
+	
 		// --needed-- you will use this code to make sure that the prompted word becomes all lower case so you don't have to have upper and lowe case options--//
 		// String.fromCharCode(event.keyCode).toLowerCase();
 		// --------- var Variable = {}; equals an empty object array 
 
  	// -- game visuals -- //
 
- 	var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+ 	var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
 	// -- scoreboard -- //
-    var wins = 0;
-    var losses = 0;
+	// var showLives = document.getElementByClass("showLives");
+
+	// creating the actual alphabet list
+	var letterButtons = function() {
+		buttons = document.getElementById("letterButton");
+		// were going to create our list
+		letters = document.createElement("ul");
+
+		for (var counter = 0; counter < alphabet.length; counter++) {
+					letters.id = "alphabet";
+					lettersList = document.createElement("li");
+					lettersList.id = "letter";
+					lettersList.innerHTML = alphabet[counter];
+					// check();
+					buttons.appendChild(letters);
+
+					letters.appendChild(lettersList);		
+			} 
+		}
+
+	
+
+	letterButtons();
+
+    var guesses = [];
+    // stores the guesses made
+    var counter = 0;
+    // to count the amount of guesses
     var lives = 0;
+    // lives
 
 
  	// -- prompt player one for a word -- //

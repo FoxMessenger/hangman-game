@@ -1,14 +1,61 @@
+/* base visual */ 
+body {
+	background-color: #2e2e2e;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; /* best hipster font type */
+	color: white; /* best font color */
+	height: 100%;
+	text-align: center; /* best text alignment... online*/ 
+	font-size: 20px; 
+}
+
+/* I really wanted to name this class lilWayne, but I thought I would forget what it belonged to. Also I don't think Bootstrap supports rappers -- they're all about the EDM scene */
+.wrapper {
+	width: 100%;
+	margin: 0 auto;
+}
 
 .titleName {
+	background-color: #4c4c4c;
+	border-style: none;
 	text-align: center;
-	color: tomato;
+/*	color: tomato; currently my favourite CSS colour*/ 
 	width: 600px;
 	margin: auto;
-
 }
+
+.titleNameSmall { color: white; font-size: 12px; }
 
 #scoreboard {
 	text-align: center;
+}
+
+/*  letter style  */
+.alphabet {
+	clear: both;
+	margin: 10px auto;
+	padding: 0;
+	max-width: 600px
+
+}
+
+.alphabet li {
+	float: left;
+	margin: 0 10px 10px 0;
+	list-style: none;
+	width: 30px;
+	height: 35px;
+	background-color: white;
+	color: #2e2e2e;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	cursor: pointer; /*this gives the pointer style when you hover over. The only other option I would care for is crosshair*/
+	border: solid 1px #fff; /*this border is so when I hover over my letter or select it, that we have a different style of the letter--I can also change the colour, but we'll see*/
+}
+
+.alphabet li:hover {
+	background-color: #2e2e2e;
+	color: white;
+	border: solid 1px #fff;
 }
 
 .letterButton {
@@ -32,14 +79,15 @@
 @media screen and (max-width: 991px) {
      /* start of large tablet styles */
 	body { width: 900px;}
+
 }
 
 @media screen and (max-width: 767px) {
      /* start of medium tablet styles */
-	 
+	/*.alphabet { padding: 0 0 0 15px; }*/	 
 }
 
 @media screen and (max-width: 479px) {
      /* start of phone styles */
-
+  /*.alphabet { padding: 0 0 0 25px; }*/
 }

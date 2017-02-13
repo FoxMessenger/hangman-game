@@ -30,7 +30,7 @@ body {
 }
 
 /*  letter style  */
-.alphabet {
+#letterButton {
 	clear: both;
 	margin: 10px auto;
 	padding: 0;
@@ -38,7 +38,7 @@ body {
 
 }
 
-.alphabet li {
+#letterButton li {
 	float: left;
 	margin: 0 10px 10px 0;
 	list-style: none;
@@ -52,7 +52,7 @@ body {
 	border: solid 1px #fff; /*this border is so when I hover over my letter or select it, that we have a different style of the letter--I can also change the colour, but we'll see*/
 }
 
-.alphabet li:hover {
+#letterButton li:hover {
 	background-color: #2e2e2e;
 	color: white;
 	border: solid 1px #fff;
@@ -65,12 +65,12 @@ body {
 }
 
 .letterStatic,
-.letterInactive {
+.letterActive {
 	list-style: none;
 	float: left;
 }
 
-.letterInactive {
+.letterActive {
 
 }
 

@@ -27,7 +27,17 @@ body {
 
 #scoreboard {
 	text-align: center;
+
 }
+
+#wordContainer li{
+
+	float: left;
+	list-style: none;
+	margin: 0 10px 10px 0;
+	padding: 10px;
+}
+
 
 /*  letter style  */
 #letterButton {

@@ -13,10 +13,12 @@
 	// I don't understand the Mozilla documention of mixin, thus I don't think I clearly understand window.onload. My best guess is that it loads the DOM with all the elements first and then attempts to load my code.
 	// If this is the case, why must is be a function? I feel this might be too complicated of a question to anwer.
 
+	// -- prompt player one for a word -- //
+
 window.onload = function() {
 
  	// letterGuess will need to change the class once it's selected, from "letterStatic" to "LetterActivated"
- 	var wordInput = prompt("Give me a word");		// this will be the word we'll use each round
+ 	var word = prompt("Give me a word");		// this will be the word we'll use each round
  	var letterGuess;								// to count the amount of guesses
 	var guesses = [];								// stores the guesses made
     var correctGuesses;								
@@ -29,6 +31,20 @@ window.onload = function() {
  	// game visuals 
  	var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
+	// scoreboard visual
+	var scoreboard = function() {
+
+		showLives.innerHTML = "You have " + lives + " lives left";
+		if (lives < 1) {
+			showLives.innerHTML = "GameOver";
+		}
+		for (var counter = 0; counter < guesses.length; counter++) {
+			if (wordSpaces === guesses.length) {
+				showLives.interHTML = "YouWin";
+			}
+		}
+    }
+
 	// creating the alphabet list
 	var myButtons = function() {
 		buttons = document.getElementById("letterButton");
@@ -38,6 +54,7 @@ window.onload = function() {
 					lettersList = document.createElement("li");
 					lettersList.id = "letter";
 					lettersList.innerHTML = alphabet[counter];
+					check();
 
 					buttons.appendChild(letters);
 
@@ -46,10 +63,10 @@ window.onload = function() {
 	}
 
 	// creating the guess list (so many chances for puns)
-	wordGuess = function () {
+	var wordGuess = function () {
 		wordContainer = document.getElementById("wordContainer");
 		correctAnswer = document.createElement("ul");
-		for (var counter = 0; counter < wordInput.length; counter++) {
+		for (var counter = 0; counter < word.length; counter++) {
 						// correctAnswer.setAttribute("id", "myWord"); 
 					guessLetter = document.createElement("li");
 						// guessLetter.setAttribute("class", "guess");
@@ -62,28 +79,17 @@ window.onload = function() {
 		}
 	}
 
-	//
-	scoreboard = function() {
 
-		showLives.innerHTML = "Wins: " + wins + " | " + "Losses: " + losses + "<br />" + "Guesses Left: " + guesses;
-		if (lives < 1) {
-			showLives.innerHTML = "GameOver";
-		}
-		for (var counter = 0; counter < guesses.length; counter++) {
-			if (correctSpaces + wordSpaces === guesses.length) {
-				showLives.interHTML = "YouWin";
-			}
-		}
-    }
-
-    check = function() {
-    	list.onclick = function() {
+    var check = function() {
+    	lettersList.onclick = function() {
     		var letterGuess = (this.innerHTML);
     		this.setAttribute("class", "letterActive");
     		this.onclick = null; //I don't know why this is the case here
-    		for (var counter = 0; counter > wordInput.length; counter++) {
-    			guesses[counter].innerHTML = letterGuess;
-    			wordSpaces += 1;
+    		for (var counter = 0; counter > word.length; counter++) {
+    			if (word[counter] === guessLetter) {
+    				guesses[counter].innerHTML = letterGuess;
+    				correctGuesses += 1;
+    			}
     		}
     	}
     	// explain this portion
@@ -95,7 +101,23 @@ window.onload = function() {
     		scoreboard();
     	}
     }
- 	// -- prompt player one for a word -- //
+
+
+    var game = function() {
+    	guesses = [];
+    	lives = 10;
+    	correctGuesses = 0;
+    	wordSpaces = 0;
+
+    	myButtons();
+    	wordGuess();
+		scoreboard();
+    }
+
+    game();
+
+
+
  	
  	// ***** UNCOMMENT ME ***** // var wordInputArray = wordInput.split(""); // this will splice the input word into separate letters. 
  	// ^^ weird results with non-BMP (non-Basic-Multilingual-Plane) character sets.
@@ -113,6 +135,5 @@ window.onload = function() {
 
 	// -- bring to screen -- //
 
-	myButtons(); //now to execute the button function
-	wordGuess();
+
 }

@@ -6,7 +6,6 @@
 		
 		// --------- var Variable = {}; equals an empty object array 
 
-		// the .getElementByClassName always brings back an error. Which is annoying because I prefer ClassName over id, but that's just preference.
 
 	// none of my visual code will work if I don't add window.onload. everything returns null 
 	
@@ -17,123 +16,113 @@
 
 window.onload = function() {
 
- 	// letterGuess will need to change the class once it's selected, from "letterStatic" to "LetterActivated"
- 	var word = prompt("Give me a word");		// this will be the word we'll use each round
- 	var letterGuess;								// to count the amount of guesses
+ 	var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']	// game visuals 
+
+ 	var word = prompt("Give me a word");			// this will be the word we'll use each round
+
+ 	var guess;										// guess
 	var guesses = [];								// stores the guesses made
-    var correctGuesses;								
     var lives;										// lives
-    var wordSpaces;									// amount of spaces in the word ( _ )
+
+    var correctGuesses;								// correct guesses
 	
 	// scoreboard
 	var showLives = document.getElementById("showLives"); 
 
- 	// game visuals 
- 	var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-
-	// scoreboard visual
-	var scoreboard = function() {
-
-		showLives.innerHTML = "You have " + lives + " lives left";
-		if (lives < 1) {
-			showLives.innerHTML = "GameOver";
-		}
-		for (var counter = 0; counter < guesses.length; counter++) {
-			if (wordSpaces === guesses.length) {
-				showLives.interHTML = "YouWin";
-			}
-		}
-    }
 
 	// creating the alphabet list
 	var myButtons = function() {
-		buttons = document.getElementById("letterButton");
-		letters = document.createElement("ul");		// were going to create our ul now
-		for (var counter = 0; counter < alphabet.length; counter++) {
-					letters.id = "alphabet"; 
-					lettersList = document.createElement("li");
-					lettersList.id = "letter";
-					lettersList.innerHTML = alphabet[counter];
-					check();
+		var buttons = document.getElementsByClassName("letterButton");
+		var letters = document.createElement("ul");	
+		
+		for (var i = 0; i < alphabet.length; i++) {
+					
+			lettersList = document.createElement("li");
+			letters.classList.add("alphabet"); 
+					
+			lettersList.classList.add("letter");
+			lettersList.innerHTML = alphabet[i];
+			check();
+			
+			buttons[0].appendChild(letters); // error: append child is not a function
+			letters.appendChild(lettersList);		
+					
 
-					buttons.appendChild(letters);
-
-					letters.appendChild(lettersList);		
+					
 			} 
 	}
 
 	// creating the guess list (so many chances for puns)
 	var wordGuess = function () {
-		wordContainer = document.getElementById("wordContainer");
-		correctAnswer = document.createElement("ul");
-		for (var counter = 0; counter < word.length; counter++) {
-						// correctAnswer.setAttribute("id", "myWord"); 
-					guessLetter = document.createElement("li");
-						// guessLetter.setAttribute("class", "guess");
-					guessLetter.innerHTML = "_";
+		var wordContainer = document.getElementsByClassName("wordContainer");
+		var correctAnswer = document.createElement("ul");
+		
+		for (var i = 0; i < word.length; i++) {
+					correctAnswer.setAttribute("class", "myWord"); 
+					
+					guess = document.createElement("li");
+					guess.setAttribute("class", "guess");
+					guess.innerHTML = "_";
 
-					guesses.push(guessLetter);
-
-					wordContainer.appendChild(correctAnswer);
-					correctAnswer.appendChild(guessLetter);
+					guesses.push(guess);
+					wordContainer[0].appendChild(correctAnswer);
+					correctAnswer.appendChild(guess);
 		}
 	}
 
+	// scoreboard visual
+	var scoreboard = function() {
+		showLives.innerHTML = "You have " + lives + " lives left";
+		console.log('lives are', showLives);
 
+		if (lives < 1) {
+			showLives.innerHTML = "GameOver";
+		}
+		for (var i = 0; i < guesses.length; i++) {
+			if (correctGuesses === guesses.length) {
+				showLives.innnerHTML = "YouWin";
+			}
+		}
+    }
+
+    // click button
     var check = function() {
     	lettersList.onclick = function() {
-    		var letterGuess = (this.innerHTML);
-    		this.setAttribute("class", "letterActive");
+    		var guess = (this.innerHTML);
+    		this.setAttribute("class", "active");
     		this.onclick = null; //I don't know why this is the case here
-    		for (var counter = 0; counter > word.length; counter++) {
-    			if (word[counter] === guessLetter) {
-    				guesses[counter].innerHTML = letterGuess;
+    		
+    		for (var i = 0; i < word.length; i++) {
+    			if (word[i] === guess) {
+    				guesses[i].innerHTML = guess;
     				correctGuesses += 1;
     			}
     		}
-    	}
-    	// explain this portion
-    	var i = (word.indexOf(letterGuess));
-    	if (i === -1) {
-    		lives -= 1;
-    		scoreboard();
-    	} else {
-    		scoreboard();
+    		// explain this portion
+    		var checkChar = (word.indexOf(guess));
+    		if (checkChar === -1) {
+    			lives -= 1;
+    			scoreboard();
+    		}  else {
+    			scoreboard();
+    		}
     	}
     }
 
 
     var game = function() {
+    	word = word.replace(/\s/g, "-");
+		console.log(word);
+		myButtons();
+
     	guesses = [];
     	lives = 10;
     	correctGuesses = 0;
-    	wordSpaces = 0;
 
-    	myButtons();
-    	wordGuess();
+		wordGuess();
 		scoreboard();
     }
 
     game();
-
-
-
- 	
- 	// ***** UNCOMMENT ME ***** // var wordInputArray = wordInput.split(""); // this will splice the input word into separate letters. 
- 	// ^^ weird results with non-BMP (non-Basic-Multilingual-Plane) character sets.
-
- 	// this will be the button you click (and could be the letter you depress, but I'd rather control it in a manner that's prettier)
-
-
-	// -- logic -- //
-	// functions
-
-		//split function - to break the word into an array
-
-		// loop
-			// if statement to figure out if letterGuess equals a letter in inputWord
-
-	// -- bring to screen -- //
-
 
 }

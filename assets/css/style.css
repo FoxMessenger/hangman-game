@@ -105,6 +105,13 @@ body {
 	background-color: tomato;
 }
 
+
+#reset {
+	border-radius: 5px;
+	background-color: white;
+	color: #2e2e2e;
+}
+
 /* start of desktop styles */
 
 @media screen and (max-width: 991px) {

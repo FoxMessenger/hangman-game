@@ -1,10 +1,13 @@
  
 	// NOTES:
 
-		// needed 	- press any key to get started.
-		//			- theme
-		//			- Wins
-		//			- play again function
+		// needed 	- press any key to get started. // using click letter to play, I hope this is ok
+		//			- theme // check
+		//			- Wins // not working
+		//			- You Win // check
+		//			- Game Over // check
+		//			- play again function // not working -- onclick returns null
+		//			- on key up // not working -- used to guess whole word 
 
 		// extra	- play a sound	
 	
@@ -31,7 +34,9 @@ window.onload = function() {
 	var guesses = [];								// stores the guesses made
     var lives;										// lives
     var playAgain;
-    var wins;		
+    var wins;
+	
+    
     var space;										// the space between words "-"
     // var dashReplace = space.replace("-", " ");		// replaces the space character with an actual space
 	// the theme array
@@ -46,7 +51,11 @@ window.onload = function() {
     var correctGuesses;								// correct guesses
 	
 	// scoreboard
-	var showLives = document.getElementById("showLives"); 
+	var showLives = document.getElementById("showLives");
+	// adding wins
+	var winsElement = document.getElementById("wins" + wins);
+	
+			    
 
 
 	// creating the alphabet list
@@ -97,30 +106,58 @@ window.onload = function() {
 	var scoreboard = function() {
 		showLives.innerHTML = "You have " + lives + " lives left";
 		if (lives < 1) {
-			showLives.innerHTML = "GameOver";
+			showLives.innerHTML = "Game Over";
 		}
 		for (var i = 0; i < guesses.length; i++) {
 			if (correctGuesses + space === guesses.length) {
-				showLives.innnerHTML = "YouWin";
+				showLives.innerHTML = "You Win!";
+				wins =+ 1;
+				console.log(wins);
 			}
 		}
     }
 
+
+    // onKey up for quicker answer
+
+		// document.onkeyup = function (event) {
+  //   		var guess = (this.innerHTML)
+  //   		console.log(guess);
+  //   		this.setAttribute("class", "active");
+  //   		this.onkeyup = null; // if the button is already clicked we don't want it setting off again
+  //   		// var guess = (this.innerHTML);
+  //   		// this.setAttribute("class", "active");
+  //   		// this.onkeyup = null; // if the button is already clicked we don't want it setting off again
+
+  //   		// for (var i = 0; i < word.length; i++) {
+  //   		// 	if (word[i] === guess) {
+  //   		// 		guesses[i].innerHTML = guess;
+
+  //   		// 		correctGuesses += 1;
+  //   		// 		console.log("are have guessed " + correctGuesses + " correctly.");
+  //   		// 	}
+  //   		// }
+  //  		 }  
+    
+
     // click button
     var check = function() {
+    				
     	lettersList.onclick = function() {
     		var guess = (this.innerHTML);
     		this.setAttribute("class", "active");
-    		this.onclick = null; //I don't know why this is the case here
+    		this.onclick = null; // if the button is already clicked we don't want it setting off again
+
     		
     		for (var i = 0; i < word.length; i++) {
     			if (word[i] === guess) {
     				guesses[i].innerHTML = guess;
+
     				correctGuesses += 1;
     				console.log("are have guessed " + correctGuesses + " correctly.");
     			}
     		}
-    		// explain this portion
+    		// check the charact index of the letter pressed
     		var checkChar = (word.indexOf(guess));
     		if (checkChar === -1) {
     			lives -= 1;
@@ -160,22 +197,25 @@ window.onload = function() {
     	lives = 10;
     	correctGuesses = 0;
     	space = 0;
+    	wins = 0;
 
 		myButtons();
 		themeSelect();
 		wordGuess();
 		scoreboard();
-    }
+    };
 
     game();
 
 
-}
+};
 
 
 	// Reset Game
 
-	document.getElementById("reset").on("click", function(){
-		correctAnswer.removeChild(correctAnswer);
-		letters.removeChild
-	});
+ //  document.getElementById('reset').onclick = function() {
+	// 	// correctAnswer.removeChild(correctAnswer);
+	// 	// letters.removeChild(letters);
+	// 	// game();
+	// 	console.log("clicked!");
+	// }

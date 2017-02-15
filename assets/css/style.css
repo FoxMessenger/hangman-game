@@ -29,6 +29,10 @@ body {
 	text-align: center;
 
 }
+#themeName {
+	color:tomato;
+	text-transform: uppercase;
+}
 
 #wordContainer {
 	clear: both;
@@ -87,7 +91,7 @@ body {
 	/*clear: both;*/
 	/*margin: 10px auto;*/
 	/*padding: 0;*/
-	max-width: 600px
+	/*width: 600px;*/
 	background-color: #2e2e2e;
 	color: white;
 	border: solid 1px #fff;
@@ -105,8 +109,8 @@ body {
 
 @media screen and (max-width: 991px) {
      /* start of large tablet styles */
-	/*body { width: 900px;}*/
-
+/*	body { min-width: 900px;}*/
+	body { max-width: 600px; }
 }
 
 @media screen and (max-width: 767px) {

@@ -41,7 +41,8 @@ window.onload = function() {
     // var dashReplace = space.replace("-", " ");		// replaces the space character with an actual space
 	// the theme array
     var theme = [
-    		["gladiator", "john-wick",  "jack-reacher", "enter-the-dragon", "the-raid", "the-bourne-identity", "mad-max", "taken"], //action movies
+    		["gladiator", "john-wick",  "jack-reacher", "enter-the-dragon", "the-raid", "the-bourne-identity", "mad-max", "taken"], 
+    			//action movies
     		["the-last-airbender", "vampires-suck", "battlefield-earth", "speed-two-cruise-control", "fear-dot-com", "daddy-day-camp", "jaws-the-revenge", "fifty-shades-of-grey",], //terrible movies
     		["blair-witch-project", "alien", "prometheus", "cabin-in-the-woods", "scream", "poltergeist"], // horror movies
     		["fences", "moonlight", "shawshank-redemption", "a-beautiful-mind", "good-will-hunting", "cast-away"], //dramas
@@ -138,14 +139,14 @@ window.onload = function() {
    		 }  
     
 
-    // click button
-    var check = function() {
-    				
     	lettersList.onclick = function() {
     		var guess = (this.innerHTML);
     		this.setAttribute("class", "active");
     		this.onclick = null; // if the button is already clicked we don't want it setting off again
+    	}
 
+    // click button
+    var check = function() {
     		
     		for (var i = 0; i < word.length; i++) {
     			if (word[i] === guess) {
@@ -163,7 +164,6 @@ window.onload = function() {
     		}  else {
     			scoreboard();
     		}
-    	}
     }
 
 	// selecting the theme

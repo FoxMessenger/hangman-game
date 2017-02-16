@@ -3,7 +3,7 @@
 
 		// needed 	- press any key to get started. // using click letter to play, I hope this is ok
 		//			- theme // check
-		//			- Wins // not working
+		//			- Wins // check
 		//			- You Win // check
 		//			- Game Over // check
 		//			- play again function // not working -- onclick returns null
@@ -35,7 +35,7 @@ window.onload = function() {
     var lives;										// lives
     var playAgain;
     var wins;
-	
+	var letterList;
     
     var space;										// the space between words "-"
     // var dashReplace = space.replace("-", " ");		// replaces the space character with an actual space
@@ -52,8 +52,9 @@ window.onload = function() {
 	
 	// scoreboard
 	var showLives = document.getElementById("showLives");
+	
 	// adding wins
-	var winsElement = document.getElementById("wins" + wins);
+	var winsElement = document.getElementById("wins");
 	
 			    
 
@@ -74,10 +75,7 @@ window.onload = function() {
 			
 			buttons[0].appendChild(letters); // error: append child is not a function
 			letters.appendChild(lettersList);		
-					
-
-					
-			} 
+		} 
 	}
 
 	// creating the guess list (so many chances for puns)
@@ -105,6 +103,7 @@ window.onload = function() {
 	// scoreboard visual
 	var scoreboard = function() {
 		showLives.innerHTML = "You have " + lives + " lives left";
+		winsElement.innerHTML = "Wins: " + wins;
 		if (lives < 1) {
 			showLives.innerHTML = "Game Over";
 		}
@@ -112,6 +111,7 @@ window.onload = function() {
 			if (correctGuesses + space === guesses.length) {
 				showLives.innerHTML = "You Win!";
 				wins =+ 1;
+				winsElement.innerHTML = "Wins: " + wins;
 				console.log(wins);
 			}
 		}
@@ -120,24 +120,22 @@ window.onload = function() {
 
     // onKey up for quicker answer
 
-		// document.onkeyup = function (event) {
-  //   		var guess = (this.innerHTML)
-  //   		console.log(guess);
-  //   		this.setAttribute("class", "active");
-  //   		this.onkeyup = null; // if the button is already clicked we don't want it setting off again
-  //   		// var guess = (this.innerHTML);
-  //   		// this.setAttribute("class", "active");
-  //   		// this.onkeyup = null; // if the button is already clicked we don't want it setting off again
+		document.onkeyup = function (event) {
+    		var guess = event.keyCode;
+    		console.log(guess);
+ 
+    		guess.setAttribute("class", "active");
+    		guess.onkeyup = null; // if the button is already clicked we don't want it setting off again
 
-  //   		// for (var i = 0; i < word.length; i++) {
-  //   		// 	if (word[i] === guess) {
-  //   		// 		guesses[i].innerHTML = guess;
+    		for (var i = 0; i < word.length; i++) {
+    			if (word[i] === guess) {
+    				guesses[i].innerHTML = guess;
 
-  //   		// 		correctGuesses += 1;
-  //   		// 		console.log("are have guessed " + correctGuesses + " correctly.");
-  //   		// 	}
-  //   		// }
-  //  		 }  
+    				correctGuesses += 1;
+    				console.log("are have guessed " + correctGuesses + " correctly.");
+    			}
+    		}
+   		 }  
     
 
     // click button
@@ -203,19 +201,20 @@ window.onload = function() {
 		themeSelect();
 		wordGuess();
 		scoreboard();
-    };
+    }
 
     game();
-
-
-};
 
 
 	// Reset Game
 
  //  document.getElementById('reset').onclick = function() {
 	// 	// correctAnswer.removeChild(correctAnswer);
-	// 	// letters.removeChild(letters);
-	// 	// game();
+	// 	lettersList.removeChild(letters);
+	// 	game();
 	// 	console.log("clicked!");
 	// }
+
+};
+
+

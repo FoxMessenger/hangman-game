@@ -70,7 +70,7 @@ body {
 
 /*  letter style  */
 
-.letterButton li {
+.letterBtns li {
 	float: left;
 	margin: 0 10px 10px 0;
 	list-style: none;
@@ -87,7 +87,7 @@ body {
 	/*clear: both;*/
 }
 
-.letterButton li:hover {
+.letterBtns li:hover {
 	/*clear: both;*/
 	/*margin: 10px auto;*/
 	/*padding: 0;*/
@@ -98,7 +98,7 @@ body {
 }
 
 
-.letterButton .active  {
+.letterBtns .active  {
 	/*float: left;*/
 	list-style: none;
 	color: white;
